@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.busraciftlik.turkcell.game.database.CampaignDatabase;
 import com.busraciftlik.turkcell.game.entity.Campaign;
+import com.busraciftlik.turkcell.game.ex.CampaignNotFoundException;
 import com.busraciftlik.turkcell.game.service.api.BaseInterface;
 
 public class CampaignService implements BaseInterface<Campaign> {
@@ -24,9 +25,9 @@ public class CampaignService implements BaseInterface<Campaign> {
 
     @Override
     public void delete(int id) {
-        for (int index = 0; index<CampaignDatabase.campaignList.size(); index++){
-            if(CampaignDatabase.campaignList.get(index).getId() == id){
-                CampaignDatabase.campaignList.remove(index);
+        for (int i = 0; i<CampaignDatabase.campaignList.size(); i++){
+            if(CampaignDatabase.campaignList.get(i).getId() == id){
+                CampaignDatabase.campaignList.remove(i);
             }
         }
     }
@@ -38,22 +39,22 @@ public class CampaignService implements BaseInterface<Campaign> {
 
     @Override
     public Campaign getById(int id) {
-        for (int index = 0; index<CampaignDatabase.campaignList.size(); index++){
-            if(CampaignDatabase.campaignList.get(index).getId() == id){
-                return CampaignDatabase.campaignList.get(index);
+        for (int i = 0; i<CampaignDatabase.campaignList.size(); i++){
+            if(CampaignDatabase.campaignList.get(i).getId() == id){
+                return CampaignDatabase.campaignList.get(i);
             }
         }
-        return new Campaign();
+        throw new CampaignNotFoundException(id);
     }
 
     @Override
     public Campaign getByName(String name) {
-        for (int index = 0; index<CampaignDatabase.campaignList.size(); index++){
-            if(CampaignDatabase.campaignList.get(index).getName().toLowerCase().equals(name.toLowerCase())){
-                return CampaignDatabase.campaignList.get(index);
+        for (int i = 0; i<CampaignDatabase.campaignList.size(); i++){
+            if(CampaignDatabase.campaignList.get(i).getName().toLowerCase().equals(name.toLowerCase())){
+                return CampaignDatabase.campaignList.get(i);
             }
         }
-        return new Campaign();
+        throw new CampaignNotFoundException(name);
     }
     
 }

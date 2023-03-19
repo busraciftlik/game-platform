@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.busraciftlik.turkcell.game.entity.Game;
 
-public abstract class GameDatabase {
+public class GameDatabase {
     
     public static final List<Game> gameList = new ArrayList<>();
 

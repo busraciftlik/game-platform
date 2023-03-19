@@ -1,8 +1,10 @@
 package com.busraciftlik.turkcell.game.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import com.busraciftlik.turkcell.game.database.CampaignDatabase;
+import com.busraciftlik.turkcell.game.database.OnMemoryDatabase;
 import com.busraciftlik.turkcell.game.entity.Campaign;
 import com.busraciftlik.turkcell.game.ex.CampaignNotFoundException;
 import com.busraciftlik.turkcell.game.service.api.BaseInterface;
@@ -11,50 +13,44 @@ public class CampaignService implements BaseInterface<Campaign> {
 
     @Override
     public void add(Campaign campaign) {
-        CampaignDatabase.campaignList.add(campaign);
+        OnMemoryDatabase.CAMPAIGNS.put(campaign.getId(), campaign);
     }
 
     @Override
     public void update(Campaign campaign) {
-        for (Campaign availablecampaign : CampaignDatabase.campaignList) {
-            if(availablecampaign.getId() == campaign.getId()){
-                availablecampaign.setDiscountPercentage(campaign.getDiscountPercentage());
-            }
+        if (OnMemoryDatabase.CAMPAIGNS.containsKey(campaign.getId())) {
+            OnMemoryDatabase.CAMPAIGNS.put(campaign.getId(), campaign);
+        } else {
+            throw new CampaignNotFoundException(campaign.getId());
         }
     }
 
     @Override
     public void delete(int id) {
-        for (int i = 0; i<CampaignDatabase.campaignList.size(); i++){
-            if(CampaignDatabase.campaignList.get(i).getId() == id){
-                CampaignDatabase.campaignList.remove(i);
-            }
-        }
-    }
-
-    @Override
-    public List<Campaign> getAll() {
-        return CampaignDatabase.campaignList;
-    }
-
-    @Override
-    public Campaign getById(int id) {
-        for (int i = 0; i<CampaignDatabase.campaignList.size(); i++){
-            if(CampaignDatabase.campaignList.get(i).getId() == id){
-                return CampaignDatabase.campaignList.get(i);
-            }
+        if (OnMemoryDatabase.CAMPAIGNS.containsKey(id)) {
+            OnMemoryDatabase.CAMPAIGNS.remove(id);
         }
         throw new CampaignNotFoundException(id);
     }
 
     @Override
+    public List<Campaign> getAll() {
+        return new ArrayList<>(OnMemoryDatabase.CAMPAIGNS.values());
+    }
+
+    @Override
+    public Campaign getById(int id) {
+        return OnMemoryDatabase.CAMPAIGNS.get(id);
+    }
+
+    @Override
     public Campaign getByName(String name) {
-        for (int i = 0; i<CampaignDatabase.campaignList.size(); i++){
-            if(CampaignDatabase.campaignList.get(i).getName().toLowerCase().equals(name.toLowerCase())){
-                return CampaignDatabase.campaignList.get(i);
+        Collection<Campaign> campaigns = OnMemoryDatabase.CAMPAIGNS.values();
+        for (Campaign campaign : campaigns) {
+            if (campaign.getName().equalsIgnoreCase(name)) {
+                return campaign;
             }
         }
         throw new CampaignNotFoundException(name);
     }
-    
 }

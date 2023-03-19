@@ -19,5 +19,4 @@ public class SalesService {
             playerService.update(player);
         }
     }
-
 }

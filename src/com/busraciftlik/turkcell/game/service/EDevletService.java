@@ -6,7 +6,7 @@ public class EDevletService{
 
     public boolean verify(Player player) {
         // e-devlet simulation
-        System.out.println(player.getFirstName() + " " + player.getLastName() + " kişisi doğrulandı");
+        System.out.println(player.getFirstName() + " " + player.getLastName() + " person verified");
         return true;
     }
 }

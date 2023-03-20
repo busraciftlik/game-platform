@@ -1,9 +1,7 @@
 package com.busraciftlik.turkcell.game.entity;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-import com.busraciftlik.turkcell.game.database.PlayerDatabase;
 
 public class BaseEntity {
 

@@ -40,7 +40,7 @@ public class GameService implements BaseInterface<Game> {
     }
 
     @Override
-    public Game getById(int id) throws Exception {
+    public Game getById(int id) {
         return OnMemoryDatabase.GAMES.get(id);
     }
 

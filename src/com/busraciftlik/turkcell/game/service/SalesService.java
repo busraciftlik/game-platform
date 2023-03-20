@@ -6,13 +6,14 @@ import com.busraciftlik.turkcell.game.entity.Player;
 
 public class SalesService {
     
-    private final PlayerService playerService;
+    private PlayerService playerService;
+    private GameService gameService;
 
-    public SalesService(PlayerService playerService) {
-        this.playerService = playerService;
+    public SalesService() {
     }
-
-    public void buyGame(Game game,Player player){
+    public void buyGame(int gameId, int playerId){
+        Player player = playerService.getById(playerId);
+        Game game = gameService.getById(gameId);
         if(game.getPrice() <= player.getMoney()){
             player.setMoney(player.getMoney() - game.getPrice());
             player.setGame(game);

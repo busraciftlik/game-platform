@@ -21,7 +21,7 @@ public class PlayerService implements BaseInterface<Player> {
     public void add(Player player) {
         if(eDevletService.verify(player)){
             OnMemoryDatabase.PLAYERS.put(player.getId(),player);
-            System.out.println(player.getFirstName() + player.getLastName() + " has been added to the players.");
+            System.out.println(player.getFirstName() +" "+ player.getLastName() + " has been added to the players.");
         }
     }
     @Override

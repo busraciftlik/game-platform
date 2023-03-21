@@ -27,27 +27,27 @@ public class GameApp {
                     if (option == 1) {
                         addPlayer();
                     }
-                    if (option == 2) {
+                    else if (option == 2) {
                         updatePlayer();
                     }
-                    if (option == 3) {
+                    else if (option == 3) {
                         deletePlayer();
                     }
-                    if (option == 4) {
+                    else if (option == 4) {
                         playerService.getAll();
                     }
-                    if (option == 5) {
+                    else if (option == 5) {
                         findById();
                     }
-                    if (option == 6) {
+                    else if (option == 6) {
                         findByName();
                     }
-                    if (option == 7) {
+                    else if (option == 7) {
                         break;
                     }
                 }
             }
-            if (selection == 2) {
+            else if (selection == 2) {
                 String m = "Please select the option you want to do: \n 1.Add campaign \n 2.Update campaign \n 3.Delete campaign \n 4.List all campaigns \n 5.Find by id \n 6.Find by name \n 7.Turn to home page";
                 System.out.println(m);
                 while (true) {
@@ -58,24 +58,24 @@ public class GameApp {
                     if (option == 2) {
                         updateCampaign();
                     }
-                    if (option == 3) {
+                    else if (option == 3) {
                         deleteCampaign();
                     }
-                    if (option == 4) {
+                    else if (option == 4) {
                         campaignService.getAll();
                     }
-                    if (option == 5) {
+                    else if (option == 5) {
                         findCampaignById();
                     }
-                    if (option == 6) {
+                    else if (option == 6) {
                         findCampaignByName();
                     }
-                    if (option == 7) {
+                    else if (option == 7) {
                         break;
                     }
                 }
             }
-            if (selection == 3) {
+            else if (selection == 3) {
                 String m = "Please select the option you want to do: \n 1.Add game \n 2.Update game \n 3.Delete game \n 4.List all game \n 5.Find by id \n 6.Find by name \n 7.Turn to home page";
                 System.out.print(m);
                 while (true) {
@@ -83,30 +83,30 @@ public class GameApp {
                     if (option == 1) {
                         addGame();
                     }
-                    if (option == 2) {
+                    else if (option == 2) {
                         updateGame();
                     }
-                    if (option == 3) {
+                    else if (option == 3) {
                         deleteGame();
                     }
-                    if (option == 4) {
+                    else if (option == 4) {
                         gameService.getAll();
                     }
-                    if (option == 5) {
+                    else if (option == 5) {
                         findGameById();
                     }
-                    if (option == 6) {
+                    else if (option == 6) {
                         findGameByName();
                     }
-                    if (option == 7) {
+                    else if (option == 7) {
                         break;
                     }
                 }
             }
-            if (selection == 4) {
+            else if (selection == 4) {
                 buyGame();
             }
-            if (selection == 5) {
+            else if (selection == 5) {
                 break;
             }
         }
@@ -215,12 +215,12 @@ public class GameApp {
     }
 
     private void addGame() {
-        System.out.print("Enter the game name:");
+        System.out.println("Enter the game name:");
         String name = scanner.next();
-        System.out.print("Enter the game price:");
+        System.out.println("Enter the game price:");
         double price = scanner.nextDouble();
         System.out.println("Enter the campaign:");
-        System.out.print("Enter the campaign name:");
+        System.out.println("Enter the campaign name:");
         String nameCampaign = scanner.next();
         System.out.println("Enter the discount percentage");
         double discountPercentage = scanner.nextDouble();

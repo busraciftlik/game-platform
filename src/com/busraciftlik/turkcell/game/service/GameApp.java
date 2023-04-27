@@ -21,8 +21,8 @@ public class GameApp {
             int selection = scanner.nextInt();
             if (selection == 1) {
                 String ms = "Please select the option you want to do: \n 1.Add player \n 2.Update Player \n 3.Delete Player \n 4.List all records \n 5.Find by id \n 6.Find by name \n 7.Turn to home page";
-                System.out.println(ms);
                 while (true) {
+                    System.out.println(ms);
                     int option = scanner.nextInt();
                     if (option == 1) {
                         addPlayer();
@@ -49,8 +49,8 @@ public class GameApp {
             }
             else if (selection == 2) {
                 String m = "Please select the option you want to do: \n 1.Add campaign \n 2.Update campaign \n 3.Delete campaign \n 4.List all campaigns \n 5.Find by id \n 6.Find by name \n 7.Turn to home page";
-                System.out.println(m);
                 while (true) {
+                    System.out.println(m);
                     int option = scanner.nextInt();
                     if (option == 1) {
                         addCampaign();
@@ -159,7 +159,7 @@ public class GameApp {
         System.out.println("Enter the campaign name:");
         String name = scanner.next();
         System.out.println("Enter the discount percentage");
-        double discountPercentage = scanner.nextDouble();
+        double discountPercentage = scanner.nextFloat();
         Campaign campaign = new Campaign(name, discountPercentage);
         campaignService.add(campaign);
     }

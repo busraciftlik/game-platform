@@ -1,19 +1,34 @@
 package com.busraciftlik.turkcell.game.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import com.busraciftlik.turkcell.game.database.OnMemoryDatabase;
 import com.busraciftlik.turkcell.game.entity.Campaign;
 import com.busraciftlik.turkcell.game.ex.CampaignNotFoundException;
 import com.busraciftlik.turkcell.game.service.api.BaseInterface;
+import com.busraciftlik.turkcell.game.util.DatabaseSource;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class CampaignService implements BaseInterface<Campaign> {
 
+    public static final String INSERT_INTO_CAMPAIGN = "INSERT INTO campaign VALUES (?,?)";
+
     @Override
     public void add(Campaign campaign) {
-        OnMemoryDatabase.CAMPAIGNS.put(campaign.getId(), campaign);
+        try (Connection connection = DatabaseSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(INSERT_INTO_CAMPAIGN)) {
+            statement.setString(1, campaign.getName());
+            statement.setDouble(2, campaign.getDiscountPercentage());
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        //OnMemoryDatabase.CAMPAIGNS.put(campaign.getId(), campaign);
     }
 
     @Override

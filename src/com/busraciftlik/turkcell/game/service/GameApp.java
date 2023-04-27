@@ -21,7 +21,7 @@ public class GameApp {
             int selection = scanner.nextInt();
             if (selection == 1) {
                 String ms = "Please select the option you want to do: \n 1.Add player \n 2.Update Player \n 3.Delete Player \n 4.List all records \n 5.Find by id \n 6.Find by name \n 7.Turn to home page";
-                System.out.print(ms);
+                System.out.println(ms);
                 while (true) {
                     int option = scanner.nextInt();
                     if (option == 1) {
@@ -77,7 +77,7 @@ public class GameApp {
             }
             else if (selection == 3) {
                 String m = "Please select the option you want to do: \n 1.Add game \n 2.Update game \n 3.Delete game \n 4.List all game \n 5.Find by id \n 6.Find by name \n 7.Turn to home page";
-                System.out.print(m);
+                System.out.println(m);
                 while (true) {
                     int option = scanner.nextInt();
                     if (option == 1) {
